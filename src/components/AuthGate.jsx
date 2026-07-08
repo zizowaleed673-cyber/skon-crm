@@ -1,11 +1,9 @@
 import { useState } from 'react';
-
 export default function AuthGate({ onSignIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(null);
-
   const submit = async (e) => {
     e.preventDefault();
     setBusy(true); setError(null);
@@ -13,24 +11,17 @@ export default function AuthGate({ onSignIn }) {
     setBusy(false);
     if (error) setError(error.message);
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center px-6"
          style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,169,97,0.18), transparent 70%), var(--color-bg)' }}>
       <div className="w-full max-w-md">
         <div className="text-center mb-12 reveal">
-          <div className="text-[10px] tracking-[0.4em] uppercase mb-3" style={{ color: 'var(--color-gold)' }}>
-            Skon Studio
-          </div>
-          <h1 className="font-display font-light text-6xl leading-none" style={{ letterSpacing: '-0.02em' }}>
-            Atelier
-          </h1>
+          <img src="/logo.png" alt="Skon Studio" className="h-14 w-auto mx-auto" />
           <div className="mt-6 mx-auto w-16 divider-gold" />
           <p className="mt-6 text-sm" style={{ color: 'var(--color-muted)' }}>
             Private client &amp; project intelligence
           </p>
         </div>
-
         <form onSubmit={submit} className="reveal" style={{ animationDelay: '0.15s' }}>
           <div className="space-y-5">
             <Field label="Email">
@@ -50,11 +41,9 @@ export default function AuthGate({ onSignIn }) {
               />
             </Field>
           </div>
-
           {error && (
             <div className="mt-5 text-xs" style={{ color: '#9B2C2C' }}>{error}</div>
           )}
-
           <button
             type="submit"
             disabled={busy}
@@ -68,7 +57,6 @@ export default function AuthGate({ onSignIn }) {
             {busy ? 'Entering…' : 'Enter'}
           </button>
         </form>
-
         <p className="mt-8 text-center text-[11px]" style={{ color: 'var(--color-faint)' }}>
           Access is invitation-only. Contact the studio principal to request entry.
         </p>
@@ -76,7 +64,6 @@ export default function AuthGate({ onSignIn }) {
     </div>
   );
 }
-
 function Field({ label, children }) {
   return (
     <label className="block">
