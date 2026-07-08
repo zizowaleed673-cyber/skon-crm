@@ -13,12 +13,7 @@ export default function Layout({ user, onSignOut, tab, setTab, onNewLead, childr
         <div className="px-8 py-5 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <div>
-              <div className="text-[9px] tracking-[0.4em] uppercase" style={{ color: 'var(--color-gold)' }}>
-                Skon Studio
-              </div>
-              <div className="font-display text-2xl font-light leading-none mt-0.5" style={{ letterSpacing: '-0.01em' }}>
-                Atelier
-              </div>
+              <img src="/logo.png" alt="Skon Studio" className="h-9 w-auto" />
             </div>
 
             <nav className="hidden md:flex items-center gap-1 ml-6">
