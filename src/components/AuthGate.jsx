@@ -16,10 +16,10 @@ export default function AuthGate({ onSignIn }) {
          style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,169,97,0.18), transparent 70%), var(--color-bg)' }}>
       <div className="w-full max-w-md">
         <div className="text-center mb-12 reveal">
-          <img src="/logo.png" alt="Skon Studio" className="h-14 w-auto mx-auto" />
+          <img src="/logo.png" alt="Skøn Studio" className="h-14 w-auto mx-auto" />
           <div className="mt-6 mx-auto w-16 divider-gold" />
           <p className="mt-6 text-sm" style={{ color: 'var(--color-muted)' }}>
-            Private client &amp; project intelligence
+            Skøn Studio
           </p>
         </div>
         <form onSubmit={submit} className="reveal" style={{ animationDelay: '0.15s' }}>
