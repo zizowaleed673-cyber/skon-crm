@@ -63,3 +63,148 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+
+/* ==========================================================
+   SMOOTH UI OVERRIDES  —  paste at the VERY BOTTOM of src/styles.css
+   Pure visual layer: rounded shapes, soft shadows, gentle motion.
+   To undo everything, just delete this block.
+   ========================================================== */
+
+:root {
+  --radius-card: 22px;
+  --radius-input: 999px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 2px rgba(60, 45, 20, 0.04),
+                 0 10px 28px -14px rgba(60, 45, 20, 0.16);
+  --shadow-lift: 0 2px 4px rgba(60, 45, 20, 0.05),
+                 0 16px 36px -14px rgba(60, 45, 20, 0.22);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Cards & panels (metrics, stage tiles, kanban cards, table box) ---------- */
+[style*="background: var(--color-surface)"] {
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+}
+
+/* Gentle lift on hover for card-like tiles (not the table or inputs) */
+div[style*="background: var(--color-surface)"]:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Overview hero metrics: separate cards with breathing room instead of hairline-joined boxes */
+section.grid.gap-px {
+  gap: 1.25rem !important;
+  background: transparent !important;
+}
+
+/* ---------- Leads table container ---------- */
+.overflow-x-auto[style*="background: var(--color-surface)"] {
+  outline: none !important;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+.overflow-x-auto[style*="background: var(--color-surface)"]:hover {
+  transform: none;
+}
+.overflow-x-auto[style*="background: var(--color-surface)"] {
+  overflow-x: auto;
+}
+
+/* ---------- Buttons: pill shaped ---------- */
+button {
+  border-radius: var(--radius-pill);
+  transition: all 0.3s var(--ease-smooth);
+}
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Primary dark buttons (Enter, New Lead, etc.) get a soft shadow */
+button[style*="background: var(--color-text)"] {
+  box-shadow: 0 8px 20px -10px rgba(20, 20, 30, 0.55);
+}
+
+/* ---------- Header navigation tabs: pill style instead of underline ---------- */
+header nav button {
+  border-bottom-color: transparent !important;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+header nav button[style*="color: var(--color-text)"] {
+  background: rgba(201, 169, 97, 0.18);
+}
+header nav button:not([style*="color: var(--color-text)"]):hover {
+  background: rgba(201, 169, 97, 0.09);
+}
+
+/* ---------- Inputs, search & selects ---------- */
+input[type="text"],
+select,
+textarea {
+  border-radius: 16px;
+  transition: border-color 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+}
+/* Search bar & filter dropdowns as pills (leaves your icon padding untouched) */
+input[type="text"],
+select {
+  border-radius: var(--radius-input);
+}
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.16);
+}
+select {
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+/* ---------- Login screen: rounded fields instead of underlines ---------- */
+form input[type="email"],
+form input[type="password"] {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-input);
+  background: var(--color-surface) !important;
+  padding: 0.85rem 1.4rem !important;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+}
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.16);
+}
+
+/* ---------- Small tags / badges (B2B, B2C, etc.) ---------- */
+td > span[class*="tracking"] {
+  border-radius: var(--radius-pill);
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+/* ---------- Table rows: softer hover ---------- */
+tbody tr {
+  transition: background-color 0.25s var(--ease-smooth);
+}
+
+/* ---------- Modals / slide-over editors, if present ---------- */
+[role="dialog"],
+[class*="fixed"][class*="inset-y-0"] > div {
+  border-radius: 28px 0 0 28px;
+}
+
+/* ---------- Respect reduced-motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
